@@ -9,7 +9,7 @@
 
 - [x] 今日人品（基于北京时间与请求者QQ号作为随机数种子，时间是通过请求api获取 无关服务器时间
 
-- [ ] ~~涩图~~（联动 Coder-Sakura](https://github.com/Coder-Sakura)/**[PixiC](https://github.com/Coder-Sakura/PixiC)** （因nt过多删除功能
+- [ ] ~~涩图~~（联动 [Coder-Sakura](https://github.com/Coder-Sakura)/**[PixiC](https://github.com/Coder-Sakura/PixiC)** （因nt过多删除功能
 
 - [ ] 后台页面（在写了 什么都不会现场摸索是真的难 我是真的菜
 
