@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>后台登录页面</title>
+        <!--        <link rel="stylesheet" href="/webjars/element-ui/2.14.0/lib/theme-chalk/index.css">
+            <script src="/webjars/vue/2.6.11/vue.js"></script>
+            <script src="/webjars/element-ui/2.14.0/lib/index.js"></script>
+            <script src="/webjars/axios/0.21.0/dist/axios.js"></script> -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <script src="js/vue/2.6.12/vue.js"></script>
+        <script src="js/element-ui/2.14.1/index.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/axios/0.21.0/axios.js" type="text/javascript" charset="utf-8"></script>
+        <style>
+            #login {
+            width: 18%;
+            height: 20%;
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+        }
+
+        #text {
+            font-size: xx-large;
+            text-align: center;
+            vertical-align: middle;
+            height: 50%;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="login">
+            <div id="text">后台控制面板</div>
+            <el-form :inline="true" class="el-form--inline">
+                <el-form-item>
+                    <el-input placeholder="请输入密码" v-model="input" show-password></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </body>
+    <script>
+        let vue = new Vue({
+            el: '#login',
+            data() {
+                return {
+                    input: ''
+                }
+            },
+            methods: {
+                onSubmit() {
+                    axios.post(
+                        '/login', {
+                            password: this.input
+                        }
+                    ).then((res) => {
+                        if (null != res.data.url) {
+                            window.location = res.data.url;
+                        }
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                }
+            }
+        })
+    </script>
+</html>

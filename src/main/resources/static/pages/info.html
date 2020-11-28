@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单模板</title>
+        <link rel="stylesheet" href="/webjars/element-ui/2.14.0/lib/theme-chalk/index.css">
+        <script src="/webjars/vue/2.6.11/vue.js"></script>
+        <script src="/webjars/element-ui/2.14.0/lib/index.js"></script>
+        <script src="/webjars/axios/0.21.0/dist/axios.js"></script>
+        <style type="text/css">
+            * {
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <el-table :data="tableData" stripe style="width: 100%">
+                <el-table-column prop="key" label="Key" width="240">
+                </el-table-column>
+                <el-table-column prop="value" label="Value" width="360">
+                </el-table-column>
+<!--                <el-table-column prop="notes" label="Notes">-->
+<!--                </el-table-column>-->
+            </el-table>
+        </div>
+    </body>
+    <script>
+        let vue = new Vue({
+            el:'#app',
+            data() {
+                return{
+                    tableData: []
+                }
+            },
+            mounted() {
+                axios.post(
+                    '/bot/info',{
+                        
+                    }
+                ).then((res)=>{
+                    let data = res.data;
+                    for (let i = data.length-1; i >= 0; i--) {
+                        for (let datumKey in data[i]) {
+                            let obj = {};
+                            obj.key = datumKey;
+                            let datumElement = data[i][datumKey];
+                            obj.value = datumElement.toString().replace(" ","\n");
+                            this.tableData.push(obj);
+                        }
+                    }
+                })
+            }
+        })
+    </script>
+</html>
